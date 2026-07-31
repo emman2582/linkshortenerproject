@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BarChart3, Link2, ShieldCheck, Zap } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 
 const features = [
   {
@@ -40,12 +40,15 @@ export default function HomePage() {
             and manage everything from a single dashboard.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            <Button asChild size="lg">
-              <Link href="/dashboard">Open dashboard</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="#features">Explore features</Link>
-            </Button>
+            <Link href="/dashboard" className={buttonVariants({ size: "lg" })}>
+              Open dashboard
+            </Link>
+            <Link
+              href="#features"
+              className={buttonVariants({ variant: "outline", size: "lg" })}
+            >
+              Explore features
+            </Link>
           </div>
         </section>
 
