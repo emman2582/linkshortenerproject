@@ -1,65 +1,85 @@
-import Image from "next/image";
+import Link from "next/link";
+import { BarChart3, Link2, ShieldCheck, Zap } from "lucide-react";
 
-export default function Home() {
+import { Button } from "@/components/ui/button";
+
+const features = [
+  {
+    title: "Instant short links",
+    description:
+      "Create short links in seconds and share them anywhere with a clean, reliable URL.",
+    icon: Link2,
+  },
+  {
+    title: "Built-in analytics",
+    description:
+      "Track clicks and engagement so you can understand what links perform best.",
+    icon: BarChart3,
+  },
+  {
+    title: "Secure access",
+    description:
+      "Your dashboard is protected, keeping link management and metrics private.",
+    icon: ShieldCheck,
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="flex flex-1 justify-center px-6 py-16">
+      <div className="w-full max-w-5xl space-y-16">
+        <section className="space-y-6 text-center">
+          <p className="inline-flex rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
+            Fast, simple link management
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+            Shorten links and measure impact in one place
+          </h1>
+          <p className="mx-auto max-w-2xl text-base text-muted-foreground sm:text-lg">
+            Link Shortener helps you create memorable URLs, monitor performance,
+            and manage everything from a single dashboard.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button asChild size="lg">
+              <Link href="/dashboard">Open dashboard</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link href="#features">Explore features</Link>
+            </Button>
+          </div>
+        </section>
+
+        <section id="features" className="grid gap-4 md:grid-cols-3">
+          {features.map(({ title, description, icon: Icon }) => (
+            <article
+              key={title}
+              className="rounded-xl border border-border bg-card p-6 shadow-sm"
+            >
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon className="size-5" aria-hidden="true" />
+              </div>
+              <h2 className="mb-2 text-lg font-semibold">{title}</h2>
+              <p className="text-sm text-muted-foreground">{description}</p>
+            </article>
+          ))}
+        </section>
+
+        <section className="rounded-2xl border border-border bg-muted/40 p-8 text-center">
+          <div className="mx-auto max-w-2xl space-y-3">
+            <p className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+              <Zap className="size-4 text-primary" aria-hidden="true" />
+              Built for speed
+            </p>
+            <h2 className="text-2xl font-semibold sm:text-3xl">
+              Start shortening your next link now
+            </h2>
+            <p className="text-sm text-muted-foreground sm:text-base">
+              Sign up with Clerk and begin managing all your links from a secure,
+              streamlined dashboard.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }
