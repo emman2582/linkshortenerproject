@@ -43,12 +43,6 @@ export default function HomePage() {
             <Link href="/dashboard" className={buttonVariants({ size: "lg" })}>
               Open dashboard
             </Link>
-            <Link
-              href="#features"
-              className={buttonVariants({ variant: "outline", size: "lg" })}
-            >
-              Explore features
-            </Link>
           </div>
         </section>
 
