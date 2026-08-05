@@ -2,6 +2,7 @@ import Link from "next/link";
 import { BarChart3, Link2, ShieldCheck, Zap } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
+import { AuthRedirect } from "@/components/auth-redirect";
 
 const features = [
   {
@@ -27,6 +28,7 @@ const features = [
 export default function HomePage() {
   return (
     <main className="flex flex-1 justify-center px-6 py-16">
+      <AuthRedirect />
       <div className="w-full max-w-5xl space-y-16">
         <section className="space-y-6 text-center">
           <p className="inline-flex rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
