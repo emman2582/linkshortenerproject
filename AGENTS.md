@@ -17,3 +17,6 @@ All coding standards for this project are documented in the `/docs` directory. E
 | `/docs/ui.md` | UI components — shadcn/ui only, component installation and implementation patterns, no custom components | Before ANY UI-related code |
 
 **If the task touches auth or UI in any way — read the corresponding file first. Always.**
+
+> [!CAUTION]
+> **NEVER use or create `middleware.ts`.** `middleware.ts` is deprecated and non-functional in Next.js 16 (the version used in this project). All middleware logic MUST live in `proxy.ts` instead. Any routing, auth guards, or request interception must be implemented there.
