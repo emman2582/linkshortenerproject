@@ -5,14 +5,14 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export function AuthRedirect() {
-    const { isSignedIn, isLoaded } = useAuth();
-    const router = useRouter();
+  const { isSignedIn, isLoaded } = useAuth();
+  const router = useRouter();
 
-    useEffect(() => {
-        if (isLoaded && isSignedIn) {
-            router.push("/dashboard");
-        }
-    }, [isLoaded, isSignedIn, router]);
+  useEffect(() => {
+    if (isLoaded && isSignedIn) {
+      router.push("/dashboard");
+    }
+  }, [isLoaded, isSignedIn, router]);
 
-    return null;
+  return null;
 }

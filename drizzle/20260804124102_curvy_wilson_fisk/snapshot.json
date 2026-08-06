@@ -2,9 +2,7 @@
   "version": "8",
   "dialect": "postgres",
   "id": "73000fe6-09e3-4cbb-8e14-666f3d2a1e30",
-  "prevIds": [
-    "00000000-0000-0000-0000-000000000000"
-  ],
+  "prevIds": ["00000000-0000-0000-0000-000000000000"],
   "ddl": [
     {
       "isRlsEnabled": false,
@@ -100,9 +98,7 @@
       "table": "links"
     },
     {
-      "columns": [
-        "id"
-      ],
+      "columns": ["id"],
       "nameExplicit": false,
       "name": "links_pkey",
       "schema": "public",
@@ -111,9 +107,7 @@
     },
     {
       "nameExplicit": false,
-      "columns": [
-        "short_code"
-      ],
+      "columns": ["short_code"],
       "nullsNotDistinct": false,
       "name": "links_short_code_key",
       "schema": "public",
