@@ -1,4 +1,5 @@
-import { redirect, notFound } from "next/navigation";
+import { notFound } from "next/navigation";
+import { NextResponse } from "next/server";
 
 import { getLinkByShortCode } from "@/data/links";
 
@@ -13,5 +14,7 @@ export async function GET(
     notFound();
   }
 
-  redirect(link.url);
+  return NextResponse.redirect(link.url, {
+    headers: { "Referrer-Policy": "no-referrer" },
+  });
 }

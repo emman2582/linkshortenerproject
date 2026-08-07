@@ -4,14 +4,35 @@ import { revalidatePath } from "next/cache";
 import { auth } from "@clerk/nextjs/server";
 import { z } from "zod";
 
+import { headers } from "next/headers";
+
 import {
   createLinkForUser,
   updateLinkForUser,
   deleteLinkForUser,
 } from "@/data/links";
 
+async function validateCsrfOrigin() {
+  const headersList = await headers();
+  const origin = headersList.get("origin");
+  const host = headersList.get("host");
+  if (origin && host && new URL(origin).host !== host) {
+    throw new Error("Forbidden: cross-site request");
+  }
+}
+
 const createLinkSchema = z.object({
-  url: z.string().url("Please enter a valid URL"),
+  url: z.string().url("Please enter a valid URL").refine(
+    (url) => {
+      try {
+        const { protocol } = new URL(url);
+        return protocol === "http:" || protocol === "https:";
+      } catch {
+        return false;
+      }
+    },
+    { message: "Only http and https URLs are allowed" },
+  ),
   customSlug: z
     .string()
     .min(3, "Custom slug must be at least 3 characters")
@@ -27,6 +48,7 @@ const createLinkSchema = z.object({
 export type CreateLinkInput = z.infer<typeof createLinkSchema>;
 
 export async function createLink(input: unknown) {
+  await validateCsrfOrigin();
   const { userId } = await auth();
   if (!userId) {
     return { error: "Unauthorized" };
@@ -56,7 +78,17 @@ export async function createLink(input: unknown) {
 
 const updateLinkSchema = z.object({
   id: z.number().int().positive(),
-  url: z.string().url("Please enter a valid URL"),
+  url: z.string().url("Please enter a valid URL").refine(
+    (url) => {
+      try {
+        const { protocol } = new URL(url);
+        return protocol === "http:" || protocol === "https:";
+      } catch {
+        return false;
+      }
+    },
+    { message: "Only http and https URLs are allowed" },
+  ),
   shortCode: z
     .string()
     .min(3, "Slug must be at least 3 characters")
@@ -68,6 +100,7 @@ const updateLinkSchema = z.object({
 });
 
 export async function updateLink(input: unknown) {
+  await validateCsrfOrigin();
   const { userId } = await auth();
   if (!userId) {
     return { error: "Unauthorized" };
@@ -100,6 +133,7 @@ const deleteLinkSchema = z.object({
 });
 
 export async function deleteLink(input: unknown) {
+  await validateCsrfOrigin();
   const { userId } = await auth();
   if (!userId) {
     return { error: "Unauthorized" };
