@@ -1,8 +1,12 @@
 #!/bin/bash
 
-INPUT=$(cat)
-TOOL_NAME=$(echo "$INPUT" | grep -o '"toolName":"[^"]*"' | cut -d'"' -f4)
+# Read JSON from stdin
+json_input=$(cat)
 
-if [ "$TOOL_NAME" = "create" ] || [ "$TOOL_NAME" = "edit" ]; then
+# Extract toolName from JSON
+tool_name=$(echo "$json_input" | jq -r '.toolName')
+
+# Only run prettier if toolName is "create" or "edit"
+if [ "$tool_name" = "create" ] || [ "$tool_name" = "edit" ]; then
   npx prettier --write .
 fi
