@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BarChart3, Link2, ShieldCheck, Zap } from "lucide-react";
+import { Link2, ShieldCheck, Zap } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 import { AuthRedirect } from "@/components/auth-redirect";
@@ -12,15 +12,9 @@ const features = [
     icon: Link2,
   },
   {
-    title: "Built-in analytics",
-    description:
-      "Track clicks and engagement so you can understand what links perform best.",
-    icon: BarChart3,
-  },
-  {
     title: "Secure access",
     description:
-      "Your dashboard is protected, keeping link management and metrics private.",
+      "Your dashboard is protected, keeping your link management private.",
     icon: ShieldCheck,
   },
 ];
@@ -35,11 +29,11 @@ export default function HomePage() {
             Fast, simple link management
           </p>
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-            Shorten links and measure impact in one place
+            Shorten links and share them anywhere
           </h1>
           <p className="mx-auto max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Link Shortener helps you create memorable URLs, monitor performance,
-            and manage everything from a single dashboard.
+            Link Shortener helps you create memorable URLs and manage everything
+            from a single dashboard.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link href="/dashboard" className={buttonVariants({ size: "lg" })}>
@@ -73,8 +67,8 @@ export default function HomePage() {
               Start shortening your next link now
             </h2>
             <p className="text-sm text-muted-foreground sm:text-base">
-              Sign up with Clerk and begin managing all your links from a secure,
-              streamlined dashboard.
+              Sign up with Clerk and begin managing all your links from a
+              secure, streamlined dashboard.
             </p>
           </div>
         </section>
